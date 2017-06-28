@@ -31,7 +31,7 @@ class Member_model extends CI_Model
     {
         $sql = "SELECT * FROM members WHERE id = ?";
         
-        return $this->db->query($sql, array($id))->result_array();
+        return $this->db->query($sql, array($id))->row_array();
     }
 
 }

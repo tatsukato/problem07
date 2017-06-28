@@ -3,6 +3,7 @@
     <title></title>
   </head>
   <body>
+      <h1><?php echo $title ?></h1>
     <?php foreach($members as $member): ?>
     
       <?php echo "{$member['id']} {$member['last_name']} {$member['first_name']} {$member['age']} {$member['home']}<br>" ?>
