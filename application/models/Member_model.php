@@ -34,11 +34,11 @@ class Member_model extends CI_Model
         return $this->db->query($sql, array($id))->row_array();
     }
     
-    public function touroku(){
+    public function touroku($post){
 
         $sql = "INSERT INTO members (
                  first_name,last_name,age,home)
-                VALUES ('$_POST[first_name]','$_POST[last_name]','$_POST[age]','$_POST[add]')";
+                VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[add]')";
 
         $res = $this->db->query($sql);
 

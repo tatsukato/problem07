@@ -15,6 +15,7 @@ class Member extends CI_Controller
         
         $this->var['members'] = $members;
         
+        //membersというキーでviewに渡しているので、view内では。$membersという変数になります。
         $this->load->view('members/list', $this->var);
         
         var_dump($this->var);
@@ -27,9 +28,18 @@ class Member extends CI_Controller
     }
     
     public function add_submit()
-    {        
-        $members = $this->Member_model->touroku();
+    {   
+        //コントローラ内でPOST値を受け取りましょう。
+        $post = $_POST;
+        //そして、引数としてモデルに渡します。
+        $members = $this->Member_model->touroku($post);
         
+        //PHP リダイレクト で単語を検索してみよう。
+        //リダイレクトという概念を掴んでください。
+        //Codeigniterにもredirect()という便利な関数が用意されている。
+        redirect('member/index');
+        
+        //これはリダイレクトではなく、index()を呼び出している
         $this->index();
     }
     

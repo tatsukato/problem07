@@ -18,9 +18,11 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($prefs as $key => $val) : ?>
+        <?php // foreach ($prefs as $key => $val) : ?>
+        <?php foreach ($members as $member) : ?>
         <tr>
-          <td>1</td>
+          <!--こんな風に展開します-->
+          <td><?php echo $member['id'] ?></td>
           <td>加藤竜彦</td>
           <td>41</td>
           <td>神奈川</td>
