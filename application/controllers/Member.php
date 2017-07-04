@@ -17,5 +17,20 @@ class Member extends CI_Controller
         
         $this->load->view('members/list', $this->var);
     }
+    
+    public function add()
+    {        
+        $this->load->view('members/add', $this->var);
+    }
+    
+    public function add_submit()
+    {        
+        $members = $this->Member_model->touroku();
+    }
+    
+    public function update()
+    {          
+        $this->load->view('members/update', $this->var);
+    }
 
 }
