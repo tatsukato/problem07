@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>社員一覧画面</h1>
-    <a href="#">新規登録</a>
+    <a href="add">新規登録</a>
     <table border>
       <thead>
         <tr>
@@ -18,24 +18,17 @@
         </tr>
       </thead>
       <tbody>
+        <?php foreach ($prefs as $key => $val) : ?>
         <tr>
           <td>1</td>
           <td>加藤竜彦</td>
           <td>41</td>
           <td>神奈川</td>
-          <td><a href="#">削除</a></td>
+          <td><a href="update">削除</a></td>
           <td>17/01/03 10:12</td>
           <td>17/01/03 10:12</td>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>加藤竜彦</td>
-          <td>41</td>
-          <td>神奈川</td>
-          <td><a href="#">削除</a></td>
-          <td>17/01/03 10:12</td>
-          <td>17/01/03 10:12</td>
-        </tr>
+        <?php endforeach; ?>
       </tbody>
     </table>
   </body>

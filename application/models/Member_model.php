@@ -42,7 +42,24 @@ class Member_model extends CI_Model
 
         $res = $this->db->query($sql);
 
-	}
+    }
+    
+    public function koushin(){
+
+        $date = date('Y-m-d H:i:s');
+
+        $sql = "UPDATE members SET 
+                   first_name = '$_POST[first_name]',
+                   last_name = '$_POST[last_name]',
+                   age = '$_POST[age]',
+                   home = '$_POST[add]',
+                   modified = '$date'
+
+                   WHERE id = $argv[2]";
+
+        $res = $this->db->query($sql);
+
+    }
 
 }
 

@@ -16,6 +16,9 @@ class Member extends CI_Controller
         $this->var['members'] = $members;
         
         $this->load->view('members/list', $this->var);
+        
+        var_dump($this->var);
+        exit;
     }
     
     public function add()
@@ -26,11 +29,24 @@ class Member extends CI_Controller
     public function add_submit()
     {        
         $members = $this->Member_model->touroku();
+        
+        $this->index();
     }
     
     public function update()
     {          
         $this->load->view('members/update', $this->var);
     }
-
+    
+    public function update_submit()
+    {          
+        $members = $this->Member_model->koushin();
+        
+        $this->index();
+    }
+    
 }
+    $member = new Member();
+    $member->index();
+    
+ ?>
