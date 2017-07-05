@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>社員一覧画面</h1>
-    <a href="add">新規登録</a>
+    <a href="http://localhost/problem07/member/add">新規登録</a>
     <table border>
       <thead>
         <tr>
@@ -23,12 +23,12 @@
         <tr>
           <!--こんな風に展開します-->
           <td><?php echo $member['id'] ?></td>
-          <td>加藤竜彦</td>
-          <td>41</td>
-          <td>神奈川</td>
-          <td><a href="update">削除</a></td>
-          <td>17/01/03 10:12</td>
-          <td>17/01/03 10:12</td>
+          <td><a href="http://localhost/problem07/member/update"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?></a></td>
+          <td><?php echo $member['age'] ?></td>
+          <td><?php echo $member['home'] ?></td>
+          <td><a href ="http://localhost/problem07/member/delete">削除</a></td>
+          <td><?php echo $member['created'] ?>2</td>
+          <td><?php echo $member['modified'] ?></td>
         </tr>
         <?php endforeach; ?>
       </tbody>

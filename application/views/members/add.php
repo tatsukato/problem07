@@ -8,7 +8,7 @@
     <p>氏：<input type="text" name="first_name" /><p>
     <p>名：<input type="text" name="last_name" /><p>
     <p>年齢：<input type="text" name="age" /><p>
-    <p>出身地：<input type="text" name="add" /><p>
+    <p>出身地：<input type="text" name="home" /><p>
     <input type ="submit" value="登録">
    </form>
   </body>

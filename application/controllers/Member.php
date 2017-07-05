@@ -18,8 +18,6 @@ class Member extends CI_Controller
         //membersというキーでviewに渡しているので、view内では。$membersという変数になります。
         $this->load->view('members/list', $this->var);
         
-        var_dump($this->var);
-        exit;
     }
     
     public function add()
@@ -34,13 +32,10 @@ class Member extends CI_Controller
         //そして、引数としてモデルに渡します。
         $members = $this->Member_model->touroku($post);
         
-        //PHP リダイレクト で単語を検索してみよう。
-        //リダイレクトという概念を掴んでください。
-        //Codeigniterにもredirect()という便利な関数が用意されている。
+        $this->load->helper('url');
+        
         redirect('member/index');
         
-        //これはリダイレクトではなく、index()を呼び出している
-        $this->index();
     }
     
     public function update()
@@ -49,14 +44,26 @@ class Member extends CI_Controller
     }
     
     public function update_submit()
-    {          
-        $members = $this->Member_model->koushin();
+    {   
+        $post = $_POST;
         
-        $this->index();
+        $members = $this->Member_model->koushin($post);
+        
+        $this->load->helper('url');
+        
+        redirect('member/index');
+    }
+    
+    public function delete()
+    {
+       
+        $members = $this->Member_model->sakujo();
+        
+        $this->load->helper('url');
+        
+        redirect('member/index');
     }
     
 }
-    $member = new Member();
-    $member->index();
-    
+
  ?>

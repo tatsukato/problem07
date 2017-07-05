@@ -38,27 +38,37 @@ class Member_model extends CI_Model
 
         $sql = "INSERT INTO members (
                  first_name,last_name,age,home)
-                VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[add]')";
+                VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[home]')";
 
         $res = $this->db->query($sql);
 
     }
     
-    public function koushin(){
+    public function koushin($post)
+    {
 
         $date = date('Y-m-d H:i:s');
 
         $sql = "UPDATE members SET 
-                   first_name = '$_POST[first_name]',
-                   last_name = '$_POST[last_name]',
-                   age = '$_POST[age]',
-                   home = '$_POST[add]',
+                   first_name = '$post[first_name]',
+                   last_name = '$post[last_name]',
+                   age = '$post[age]',
+                   home = '$post[home]',
                    modified = '$date'
-
-                   WHERE id = $argv[2]";
+                       
+                   WHERE id =  ";
 
         $res = $this->db->query($sql);
 
+    }
+    
+    public function sakujo($post)
+    {
+        
+        $sql = "DELETE FROM members WHERE id = ";
+
+        $res = $this->db->query($sql);
+        
     }
 
 }
