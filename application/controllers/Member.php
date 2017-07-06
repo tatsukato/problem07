@@ -40,6 +40,7 @@ class Member extends CI_Controller
     
     public function update($id)
     {   
+        //idというキーでviewに渡しているので、view側では$idで取得できる。
         $this->var['id'] = $id;
         
         $this->load->view('members/update',$this->var);
@@ -52,6 +53,7 @@ class Member extends CI_Controller
         
         $members = $this->Member_model->koushin($post,$id);
         
+        //application/config/autoload.php のhelperに記述すると、いちいち書かなくてすむ。
         $this->load->helper('url');
         
         redirect('member/index');
