@@ -14,7 +14,7 @@ class Member extends CI_Controller
         $members = $this->Member_model->getList();
         
         $this->var['members'] = $members;
-        
+
         //membersというキーでviewに渡しているので、view内では。$membersという変数になります。
         $this->load->view('members/list', $this->var);
         
@@ -38,16 +38,19 @@ class Member extends CI_Controller
         
     }
     
-    public function update()
-    {          
-        $this->load->view('members/update', $this->var);
+    public function update($id)
+    {   
+        $this->var['id'] = $id;
+        
+        $this->load->view('members/update',$this->var);
     }
     
-    public function update_submit()
+    public function update_submit($id)
     {   
+       
         $post = $_POST;
         
-        $members = $this->Member_model->koushin($post);
+        $members = $this->Member_model->koushin($post,$id);
         
         $this->load->helper('url');
         

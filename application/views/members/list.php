@@ -23,7 +23,7 @@
         <tr>
           <!--こんな風に展開します-->
           <td><?php echo $member['id'] ?></td>
-          <td><a href="http://localhost/problem07/member/update"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?></a></td>
+          <td><a href="http://localhost/problem07/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?></a></td>
           <td><?php echo $member['age'] ?></td>
           <td><?php echo $member['home'] ?></td>
           <td><a href ="http://localhost/problem07/member/delete">削除</a></td>

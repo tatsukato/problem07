@@ -44,7 +44,7 @@ class Member_model extends CI_Model
 
     }
     
-    public function koushin($post)
+    public function koushin($post,$id)
     {
 
         $date = date('Y-m-d H:i:s');
@@ -56,7 +56,7 @@ class Member_model extends CI_Model
                    home = '$post[home]',
                    modified = '$date'
                        
-                   WHERE id =  ";
+                   WHERE id ='$id'";
 
         $res = $this->db->query($sql);
 
