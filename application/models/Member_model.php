@@ -10,14 +10,14 @@ class Member_model extends CI_Model
     {
         parent::__construct();
     }
-    
+
     /**
      * 全レコードを取得する
      * @return array
      */
     public function getList()
     {
-        $sql = "SELECT * FROM members";
+        $sql = "SELECT * FROM members ORDER BY created DESC";
 
         return $this->db->query($sql)->result_array();
     }
@@ -29,11 +29,11 @@ class Member_model extends CI_Model
      */
     public function getById($id)
     {
-        $sql = "SELECT * FROM members WHERE id = ?";
-        
+        $sql = "SELECT * FROM members WHERE id = ? ";
+
         return $this->db->query($sql, array($id))->row_array();
     }
-    
+
     public function touroku($post){
 
         $sql = "INSERT INTO members (
@@ -43,10 +43,9 @@ class Member_model extends CI_Model
         $res = $this->db->query($sql);
 
     }
-    
+
     public function koushin($post,$id)
     {
-
         $date = date('Y-m-d H:i:s');
 
         $sql = "UPDATE members SET 
@@ -55,20 +54,17 @@ class Member_model extends CI_Model
                    age = '$post[age]',
                    home = '$post[home]',
                    modified = '$date'
-                       
+
                    WHERE id ='$id'";
 
         $res = $this->db->query($sql);
-
     }
-    
-    public function sakujo($post)
+
+    public function sakujo($id)
     {
-        
-        $sql = "DELETE FROM members WHERE id = ";
+        $sql = "DELETE FROM members WHERE id ='$id'";
 
         $res = $this->db->query($sql);
-        
     }
 
 }

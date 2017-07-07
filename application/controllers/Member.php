@@ -6,18 +6,13 @@ class Member extends CI_Controller
 {
     protected $var = [];
 
-    /**
-     * 社員一覧画面
-     */
     public function index()
     {   
         $members = $this->Member_model->getList();
         
         $this->var['members'] = $members;
 
-        //membersというキーでviewに渡しているので、view内では。$membersという変数になります。
         $this->load->view('members/list', $this->var);
-        
     }
     
     public function add()
@@ -27,12 +22,9 @@ class Member extends CI_Controller
     
     public function add_submit()
     {   
-        //コントローラ内でPOST値を受け取りましょう。
         $post = $_POST;
-        //そして、引数としてモデルに渡します。
+
         $members = $this->Member_model->touroku($post);
-        
-        $this->load->helper('url');
         
         redirect('member/index');
         
@@ -40,7 +32,7 @@ class Member extends CI_Controller
     
     public function update($id)
     {   
-        //idというキーでviewに渡しているので、view側では$idで取得できる。
+
         $this->var['id'] = $id;
         
         $this->load->view('members/update',$this->var);
@@ -48,23 +40,16 @@ class Member extends CI_Controller
     
     public function update_submit($id)
     {   
-       
         $post = $_POST;
         
         $members = $this->Member_model->koushin($post,$id);
         
-        //application/config/autoload.php のhelperに記述すると、いちいち書かなくてすむ。
-        $this->load->helper('url');
-        
         redirect('member/index');
     }
     
-    public function delete()
+    public function delete($id)
     {
-       
-        $members = $this->Member_model->sakujo();
-        
-        $this->load->helper('url');
+        $members = $this->Member_model->sakujo($id);
         
         redirect('member/index');
     }
