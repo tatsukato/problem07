@@ -40,7 +40,7 @@ class Member_model extends CI_Model
                  first_name,last_name,age,home)
                 VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[home]')";
 
-        $res = $this->db->query($sql);
+        $this->db->query($sql);
 
     }
 
@@ -57,14 +57,14 @@ class Member_model extends CI_Model
 
                    WHERE id ='$id'";
 
-        $res = $this->db->query($sql);
+        $this->db->query($sql);
     }
 
     public function sakujo($id)
     {
         $sql = "DELETE FROM members WHERE id ='$id'";
 
-        $res = $this->db->query($sql);
+        $this->db->query($sql);
     }
 
 }
