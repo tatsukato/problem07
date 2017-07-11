@@ -11,8 +11,18 @@ class User_model extends CI_Model
     }
     
     public function can_login($post)
-    {   
-        $sql = "SELECT * FROM users WHERE email = $post[email]";
+    {
+        //SQL文だが、メールアドレスの部分は?にして、SQL文発行時に値をはめ込むことができる。
+        $sql = "SELECT * FROM users WHERE email = ?";
+        
+        //SQL発行。
+        // array($post['email'])
+        // の部分は?の部分に当てはめる値。配列にしているのは、?が複数ある場合、配列のゼロ番目に一番最初の?が
+        // 置き換わる仕組み。
+        // ここで何をしているかというと、レコードを１つ取得し、連想配列にして返している。
+        $user = $this->db->query($sql, array($post['email']))->row_array();
+        
+        return $user;
         
         $res = $this->db_conn->query($sql);
 
