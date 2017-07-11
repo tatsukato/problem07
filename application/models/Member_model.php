@@ -29,9 +29,9 @@ class Member_model extends CI_Model
      */
     public function getById($id)
     {
-        $sql = "SELECT * FROM members WHERE id = ? ";
+        $sql = "SELECT * FROM members WHERE id = $id ";
 
-        return $this->db->query($sql, array($id))->row_array();
+        return $this->db->query($sql,array($id))->row_array();
     }
 
     public function touroku($post){

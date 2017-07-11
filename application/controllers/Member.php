@@ -5,6 +5,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Member extends CI_Controller
 {
     protected $var = [];
+    
+    public function __construct()
+    {
+        if($_SESSION['is_login'] == false){
+            redirect('user/login');
+        }
+    }
 
     public function index()
     {   
@@ -53,7 +60,7 @@ class Member extends CI_Controller
         
         redirect('member/index');
     }
-    
+ 
 }
 
  ?>

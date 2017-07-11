@@ -11,7 +11,7 @@ class User extends CI_Controller
         $this->load->view('users/login');
     }
     
-    public function login_submit($post)
+    public function login_submit()
     {
         $post = $_POST;
 
