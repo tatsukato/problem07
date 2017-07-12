@@ -29,7 +29,7 @@ class Member_model extends CI_Model
      */
     public function getById($id)
     {
-        $sql = "SELECT * FROM members WHERE id = $id ";
+        $sql = "SELECT * FROM members WHERE id = ? ";
 
         return $this->db->query($sql,array($id))->row_array();
     }
