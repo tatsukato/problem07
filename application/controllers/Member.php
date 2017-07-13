@@ -11,7 +11,9 @@ class Member extends CI_Controller
         //親クラスにもコンストラクタが有る場合（CI_Controller）それも呼び出す
         parent::__construct();
         
-        //var_dump($_SESSION['is_login']);exit;
+        //ここで$_SESSION['is_login']に入れられた値はブラウザを
+        //閉じるまで保持されるので毎回ログイン前に初期化するように
+        //するべきでしょうか？（autoroad.phpで初期化されている？）
         
         if($_SESSION['is_login'] == false){
             redirect('user/login');

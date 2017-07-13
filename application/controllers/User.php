@@ -29,6 +29,9 @@ class User extends CI_Controller
                 }
                 //var_dump($_SESSION['is_login']);exit;
         redirect('member/index');
+        
+        //ここで$_SESSION['is_login']に入れた情報はMenber.phpでは
+        //保持されないのでしょうか？
      
     }
 }
