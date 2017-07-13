@@ -32,6 +32,13 @@ class User extends CI_Controller
         
         //ここで$_SESSION['is_login']に入れた情報はMenber.phpでは
         //保持されないのでしょうか？
+        
+        //されるはずだけど、うまくいかない？
+        //うまくいかない場合は、$_SESSIONの代わりにこれを使ってみて。
+        $this->session->set_userdata('is_login', TRUE);
+        
+        //セッションから取り出す
+        $this->session->userdata('is_login');
      
     }
 }
