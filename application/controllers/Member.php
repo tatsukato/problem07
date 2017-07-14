@@ -8,19 +8,13 @@ class Member extends CI_Controller
     
     public function __construct()
     {
-        //親クラスにもコンストラクタが有る場合（CI_Controller）それも呼び出す
+        
         parent::__construct();
         
-        //ここで$_SESSION['is_login']に入れられた値はブラウザを
-        //閉じるまで保持されるので毎回ログイン前に初期化するように
-        //するべきでしょうか？（autoroad.phpで初期化されている？）
+        //User.phpで$_SESSION['is_login']に値を入れてもここではNULLになる
+        //var_dump($_SESSION['is_login'] );exit;
         
-        //初期化というより、ログアウト機能と呼んだほうがいいね。
-        //今はログイン画面へリダイレクト扠せてるだけだけど、セッションを初期化する（ログアウトする）
-        //コントローラメソッドをUserコントローラに作り、そこでセッションを初期化して、ログイン画面へリダイレクト
-        //させるのがよい。
-        //あと、ブラウザを閉じてもセッションは残せるので、ブラウザを閉じたりしてもログアウトは保証できない。
-        if($_SESSION['is_login'] == false){
+        if($this->session->userdata('is_login') !=true){
             redirect('user/login');
         }
     }
