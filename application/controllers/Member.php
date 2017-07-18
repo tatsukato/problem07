@@ -5,17 +5,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Member extends CI_Controller
 {
     protected $var = [];
-    
+   
     public function __construct()
     {
         
         parent::__construct();
         
-        //User.phpで$_SESSION['is_login']に値を入れてもここではNULLになる
-        //var_dump($_SESSION['is_login'] );exit;
-        
-        if($this->session->userdata('is_login') !=true){
+        if($this->session->userdata('islogin') !=true){
+            
             redirect('user/login');
+            
         }
     }
 
