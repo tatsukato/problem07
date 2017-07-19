@@ -5,16 +5,11 @@ if (!defined('BASEPATH'))
 
 class Member_model extends CI_Model
 {
-
     public function __construct()
     {
         parent::__construct();
     }
 
-    /**
-     * 全レコードを取得する
-     * @return array
-     */
     public function getList()
     {
         $sql = "SELECT * FROM members ORDER BY created DESC";
@@ -22,11 +17,6 @@ class Member_model extends CI_Model
         return $this->db->query($sql)->result_array();
     }
 
-    /**
-     * IDでレコードを１つ取得する
-     * @param type $id
-     * @return array
-     */
     public function getById($id)
     {
         $sql = "SELECT * FROM members WHERE id = ? ";
@@ -34,14 +24,14 @@ class Member_model extends CI_Model
         return $this->db->query($sql,array($id))->row_array();
     }
 
-    public function touroku($post){
+    public function touroku($post)
+    {
 
         $sql = "INSERT INTO members (
                  first_name,last_name,age,home)
                 VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[home]')";
 
         $this->db->query($sql);
-
     }
 
     public function koushin($post,$id)
@@ -66,7 +56,4 @@ class Member_model extends CI_Model
 
         $this->db->query($sql);
     }
-
 }
-
-?>

@@ -47,5 +47,7 @@
         }
 
     </script>
+     <a href="http://localhost/problem07/mypage/index">マイページ</a>/<a href="http://localhost/problem07/member/logout">ログアウト</a>
   </body>
+ 
 </html>

@@ -18,5 +18,13 @@ class User_model extends CI_Model
         
         return $user;
     }
-}
+    
+    public function new_member($post)
+    {
+        $sql = "INSERT INTO users (
+                 name,email,passward)
+                VALUES ('$post[name]','$post[email]','$post[passward]')";
 
+        $this->db->query($sql);
+    }   
+}
