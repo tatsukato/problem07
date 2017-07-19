@@ -6,7 +6,7 @@ class Member extends CI_Controller
 {
     protected $var = [];
    
-    public function __construct()
+    /*public function __construct()
     {
         
         parent::__construct();
@@ -16,15 +16,17 @@ class Member extends CI_Controller
             redirect('user/login');
             
         }
-    }
+    }*/
 
     public function index()
     {   
-        $members = $this->Member_model->getList();
+        /*$members = $this->Member_model->getList();
         
         $this->var['members'] = $members;
 
-        $this->load->view('members/list', $this->var);
+        $this->load->view('members/list', $this->var);*/
+        var_dump($this->session->userdata('islogin'));
+        
     }
     
     public function add()
@@ -68,4 +70,4 @@ class Member extends CI_Controller
  
 }
 
- ?>
+ 
