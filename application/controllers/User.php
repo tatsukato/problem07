@@ -15,7 +15,7 @@ class User extends CI_Controller
 
         $deta = $this->User_model->can_login($post);
 
-        $hash = sha1('$post[passward]'.'$deta[created]');
+        $hash = sha1("'$post[passward]'.'$deta[created]'");
         
                if($hash == $deta['passward']) {
                     $this->session->set_userdata('islogin', TRUE);

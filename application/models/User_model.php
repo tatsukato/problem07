@@ -30,7 +30,7 @@ class User_model extends CI_Model
     
     public function new_passward($post,$deta)
     {
-        $hash = sha1('$post[passward]'.'$deta[created]');
+        $hash = sha1("'$post[passward]'.'$deta[created]'");
 
         $sql = "UPDATE users SET 
                 passward = '$hash'

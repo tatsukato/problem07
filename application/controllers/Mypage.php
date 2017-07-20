@@ -27,7 +27,7 @@ class Mypage extends CI_Controller
     public function update_submit($id)
     {
         $post = $_POST;
-        
+
         $user = $this->Mypage_model->getdeta();
 
         $this->Mypage_model->koushin($post,$user,$id);

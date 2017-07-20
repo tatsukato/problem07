@@ -21,7 +21,7 @@ class Mypage_model extends CI_Model
     {
         $date = date('Y-m-d H:i:s');
 
-        $hash = sha1('$post[passward].$user[created]');
+        $hash = sha1("'$post[passward]'.'$user[created]'");
 
         $sql = "UPDATE users SET 
                    name = '$post[name]',
