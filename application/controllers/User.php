@@ -15,13 +15,16 @@ class User extends CI_Controller
 
         $deta = $this->User_model->can_login($post);
 
-                if($post['passward'] == $deta['passward']) {
+        $hash = sha1('$post[passward]'.'$deta[created]');
+        
+               if($hash == $deta['passward']) {
                     $this->session->set_userdata('islogin', TRUE);
+                    $this->session->set_userdata('id', $deta['id']);
                 }
                 else{
                     $this->session->set_userdata('islogin', FALSE);
                 }
-
+                
         redirect('member/index');
     }
     
@@ -34,8 +37,17 @@ class User extends CI_Controller
     {
 	$post = $_POST;
 
-        $user = $this->User_model->new_member($post);
+        $this->User_model->new_member($post);
+        
+        $deta = $this->User_model->can_login($post);
+ 
+        $this->User_model->new_passward($post,$deta);
         
         redirect('user/login');
+    }
+    
+    public function mypage()
+    {
+	$this->load->view('user/mypage');
     }
 }

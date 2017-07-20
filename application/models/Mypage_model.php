@@ -3,28 +3,31 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Member_model extends CI_Model
+class Mypage_model extends CI_Model
 {
     public function __construct()
     {
         parent::__construct();
     }
     
-    public function getdata()
+    public function getdeta()
     {
-        $sql = "SELECT * FROM user WHERE id = ? ";
+        $sql = "SELECT * FROM users WHERE id = ? ";
 
-        return $this->db->query($sql,array())->row_array();
+        return $this->db->query($sql,array($this->session->userdata('id')))->row_array();
     }
-    
-    public function koushin($post)
+ 
+    public function koushin($post,$user,$id)
     {
         $date = date('Y-m-d H:i:s');
 
+        $hash = sha1('$post[passward].$user[created]');
+
         $sql = "UPDATE users SET 
-                   email = '$post[first_name]',
-                   passward = '$post[last_name]',
-                   name = '$post[age]',
+                   name = '$post[name]',
+                   email = '$post[email]',
+                   passward = '$hash',
+
                    modified = '$date'
 
                    WHERE id ='$id'";

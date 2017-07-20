@@ -22,8 +22,20 @@ class User_model extends CI_Model
     public function new_member($post)
     {
         $sql = "INSERT INTO users (
-                 name,email,passward)
-                VALUES ('$post[name]','$post[email]','$post[passward]')";
+                name,email)
+                VALUES ('$post[name]','$post[email]')";
+
+        $this->db->query($sql);
+    }   
+    
+    public function new_passward($post,$deta)
+    {
+        $hash = sha1('$post[passward]'.'$deta[created]');
+
+        $sql = "UPDATE users SET 
+                passward = '$hash'
+        
+                WHERE id ='$deta[id]'";
 
         $this->db->query($sql);
     }   

@@ -1,9 +1,9 @@
 <html>
   <head>
-      <title>新規会員登録</title>
+      <title>新規ユーザー登録</title>
   </head>
   <body>
-      <h1>新規会員登録</h1>
+      <h1>新規ユーザー登録</h1>
    <form method="post" action="http://localhost/problem07/user/signup_submit">
     <p>名前：<input type="text" name="name" /><p>
     <p>メールアドレス：<input type="text" name="email" /><p>

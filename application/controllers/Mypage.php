@@ -5,13 +5,18 @@ class Mypage extends CI_Controller
 {
     protected $var = [];
     
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
     public function index()
     {   
-        $date = $this->Mtpage_model->getdata();
-        
-        $this->var['date'] = $date;
+        $user = $this->Mypage_model->getdeta();
 
-        $this->load->view('users/mypage',$this->var);
+        $this->var['user'] = $user;
+
+        $this->load->view('users/mypage', $this->var);
     }
     
     public function update()
@@ -19,11 +24,13 @@ class Mypage extends CI_Controller
         $this->load->view('users/update');
     }
     
-    public function update_submit()
+    public function update_submit($id)
     {
         $post = $_POST;
+        
+        $user = $this->Mypage_model->getdeta();
 
-        $this->Member_model->koushin($post);
+        $this->Mypage_model->koushin($post,$user,$id);
 
         redirect('mypage/index');
     }
