@@ -10,16 +10,7 @@ class User_model extends CI_Model
         parent::__construct();
     }
     
-    public function can_login($post)
-    {
-        $sql = "SELECT * FROM users WHERE email = ?";
-                
-        $user = $this->db->query($sql, array($post['email']))->row_array();
-        
-        return $user;
-    }
-    
-    public function new_member($post)
+    public function new_user($post)
     {
         $sql = "INSERT INTO users (
                 name,email)
@@ -28,15 +19,63 @@ class User_model extends CI_Model
         $this->db->query($sql);
     }   
     
-    public function new_passward($post,$deta)
+    public function new_passward($post,$user)
     {
-        $hash = sha1("'$post[passward]'.'$deta[created]'");
+        $hash = sha1($post[passward].$user[created]);
 
         $sql = "UPDATE users SET 
                 passward = '$hash'
         
-                WHERE id ='$deta[id]'";
+                WHERE id ='$user[id]'";
 
         $this->db->query($sql);
-    }   
+    }
+    
+    public function getUserList()
+    {
+        $sql = "SELECT * FROM users ORDER BY created DESC";
+
+        return $this->db->query($sql)->result_array();
+    }
+    
+    public function getUserByEmail($post)
+    {
+        $sql = "SELECT * FROM users WHERE email = ?";
+               
+        $user = $this->db->query($sql, array($post['email']))->row_array();
+         
+        return $user;
+    }
+    
+    public function getUserById($id)
+    {
+        $sql = "SELECT * FROM users WHERE id = ? ";
+
+        return $this->db->query($sql,array($id))->row_array();
+    }
+    
+    public function koushin($post,$user,$id)
+    {
+        $date = date('Y-m-d H:i:s');
+
+        $hash = sha1($post[passward].$user[created]);
+
+        $sql = "UPDATE users SET 
+                   name = '$post[name]',
+                   email = '$post[email]',
+                   passward = '$hash',
+
+                   modified = '$date'
+
+                   WHERE id ='$id'";
+
+        $this->db->query($sql);
+    }
+    
+    public function sakujo($id)
+    {
+        $sql = "DELETE FROM users WHERE id ='$id'";
+
+        $this->db->query($sql);
+    }
 }

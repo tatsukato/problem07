@@ -26,7 +26,6 @@ class Member_model extends CI_Model
 
     public function touroku($post)
     {
-
         $sql = "INSERT INTO members (
                  first_name,last_name,age,home)
                 VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[home]')";

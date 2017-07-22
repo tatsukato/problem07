@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>社員一覧画面</h1>
-    <a href="http://localhost/problem07/member/add">新規登録</a>
+    <a href="/problem07/member/add">新規登録</a>
     <table border>
       <thead>
         <tr>
@@ -23,10 +23,10 @@
         <tr>
           <!--こんな風に展開します-->
           <td><?php echo $member['id'] ?></td>
-          <td><a href="http://localhost/problem07/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?></a></td>
+          <td><a href="/problem07/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?></a></td>
           <td><?php echo $member['age'] ?></td>
           <td><?php echo $member['home'] ?></td>
-          <td><a href ="http://localhost/problem07/member/delete/<?php echo $member['id'] ?>"onclick="return check()">削除</a></td>
+          <td><a href ="/problem07/member/delete/<?php echo $member['id'] ?>"onclick="return check()">削除</a></td>
           <td><?php echo $member['created'] ?>2</td>
           <td><?php echo $member['modified'] ?></td>
         </tr>
@@ -47,7 +47,7 @@
         }
 
     </script>
-     <a href="http://localhost/problem07/mypage/index">マイページ</a>/<a href="http://localhost/problem07/member/logout">ログアウト</a>
+     <a href="/problem07/user/index">ユーザー一覧</a>/<a href="/problem07/login/logout">ログアウト</a>
   </body>
  
 </html>
