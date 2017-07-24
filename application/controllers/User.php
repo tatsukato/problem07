@@ -9,6 +9,11 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        
+        if($this->session->userdata('is_login') !=true)
+        {
+            redirect('login/login');            
+        }
     }
     
     public function index()
@@ -22,7 +27,7 @@ class User extends CI_Controller
     
     public function signup()
     {
-	$this->load->view('signup');
+	$this->load->view('users/signup');
     }
     
     public function signup_submit()

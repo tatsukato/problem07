@@ -9,9 +9,9 @@ class Login extends CI_Controller
         parent::__construct();
     }
     
-    public function login()
+    public function index()
     {
-        $this->load->view('login');
+        $this->load->view('logins/login');
     }
     
     public function login_submit()
@@ -38,7 +38,7 @@ class Login extends CI_Controller
     {
 	$this->session->sess_destroy();
 
-	redirect('login/login');
+	redirect('login/index');
     }
 }
         
