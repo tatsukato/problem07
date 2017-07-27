@@ -21,10 +21,10 @@ class User_model extends CI_Model
     
     public function new_passward($post,$user)
     {
-        $hash = sha1($post[passward].$user[created]);
+        $hash = sha1($post[password].$user[created]);
 
         $sql = "UPDATE users SET 
-                passward = '$hash'
+                password = '$hash'
         
                 WHERE id ='$user[id]'";
 
@@ -58,12 +58,12 @@ class User_model extends CI_Model
     {
         $date = date('Y-m-d H:i:s');
 
-        $hash = sha1($post[passward].$user[created]);
+        $hash = sha1($post[password].$user[created]);
 
         $sql = "UPDATE users SET 
                    name = '$post[name]',
                    email = '$post[email]',
-                   passward = '$hash',
+                   password = '$hash',
 
                    modified = '$date'
 

@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>ユーザー一覧画面</h1>
-    <a href="/problem07/user/signup">新規ユーザー登録</a>
+    <a href="/user/signup">新規ユーザー登録</a>
     <table border>
       <thead>
         <tr>
@@ -22,9 +22,9 @@
         <tr>
           <!--こんな風に展開します-->
           <td><?php echo $user['id'] ?></td>
-          <td><a href="/problem07/user/update/<?php echo $user['id'] ?>"><?php echo $user['name'] ?></a></td>
+          <td><a href="/user/update/<?php echo $user['id'] ?>"><?php echo $user['name'] ?></a></td>
           <td><?php echo $user['email'] ?></td>
-          <td><a href ="/problem07/user/delete/<?php echo $user['id'] ?>"onclick="return check()">削除</a></td>
+          <td><a href ="/user/delete/<?php echo $user['id'] ?>"onclick="return check()">削除</a></td>
           <td><?php echo $user['created'] ?></td>
           <td><?php echo $user['modified'] ?></td>
         </tr>
@@ -45,6 +45,6 @@
         }
 
     </script>
-     <a href="/problem07/member/index">トップ</a>
+     <a href="/member/index">トップ</a>
   </body>
 </html>

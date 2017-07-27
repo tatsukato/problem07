@@ -12,7 +12,7 @@ class User extends CI_Controller
         
         if($this->session->userdata('is_login') !=true)
         {
-            redirect('login/login');            
+            redirect('login/index');            
         }
     }
     
@@ -32,9 +32,22 @@ class User extends CI_Controller
     
     public function signup_submit()
     {
-	$post = $_POST;
-
-        $this->User_model->new_user($post);
+        $post = $this->security->xss_clean($_POST);
+        
+        $this->form_validation->set_rules("name", "名前", "required|trim");
+        $this->form_validation->set_rules("email", "メールアドレス", "required|trim|is_unique[users.email]");
+        $this->form_validation->set_rules("password", "パスワード", "required|trim");
+        
+        if ($this->form_validation->run())
+        {
+            $this->User_model->new_user($post);
+        }
+        else
+        {
+            redirect('user/signup');
+        }
+        
+        
              
         $user = $this->User_model->getUserByEmail($post);
 
@@ -46,16 +59,33 @@ class User extends CI_Controller
     public function update($id)
     {
         $this->var['id'] = $id;
-        
+                
         $this->load->view('users/update',$this->var);
     }
     
     public function update_submit($id)
     {
-        $post = $_POST;
+        $post = $this->security->xss_clean($_POST);
         
-        $user = $this->User_model->getUserById($id);
-
+        $this->form_validation->set_rules("name", "名前", "required|trim");
+        //ここでis_unique[users.email]を設定するとメールアドレスは変更したくない時
+        //elseになってしまうので省いています。ので同じアドレスを入力するとデータベース
+        //の設定で更新はできないのですがエラーになってしまいます。
+        $this->form_validation->set_rules("email", "メールアドレス", "required|trim");
+        $this->form_validation->set_rules("password", "パスワード", "required|trim");
+        
+        if ($this->form_validation->run())
+        {
+            $user = $this->User_model->getUserById($id);
+        }
+        else
+        {
+            //redirect('user/update');にリダイレクトさせるとURLの最後のidが
+            //とれてしまってエラーが表示されるので.redirect('user/index')に
+            //リダイレクトさせてます。
+            redirect('user/index');
+        }
+        
         $this->User_model->koushin($post,$user,$id);
 
         redirect('user/index');

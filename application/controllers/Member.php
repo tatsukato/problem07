@@ -12,7 +12,7 @@ class Member extends CI_Controller
         
         if($this->session->userdata('is_login') !=true)
         {
-            redirect('login/login');            
+            redirect('login/index');            
         }
     }
 
@@ -32,10 +32,22 @@ class Member extends CI_Controller
 
     public function add_submit()
     {   
-        $post = $_POST;
-
-        $this->Member_model->touroku($post);
-
+        $post = $this->security->xss_clean($_POST);
+        
+        $this->form_validation->set_rules("first_name", "氏", "required|trim");
+        $this->form_validation->set_rules("last_name", "名", "required|trim");
+        $this->form_validation->set_rules("age", "年齢", "required|trim");
+        $this->form_validation->set_rules("home", "出身地", "required|trim");
+        
+        if ($this->form_validation->run())
+        {
+            $this->Member_model->touroku($post);
+        }
+        else
+        {
+            redirect('member/add');
+        }
+        
         redirect('member/index');
     }
 
@@ -48,10 +60,22 @@ class Member extends CI_Controller
 
     public function update_submit($id)
     {   
-        $post = $_POST;
-
-        $this->Member_model->koushin($post,$id);
+        $post = $this->security->xss_clean($_POST);
         
+        $this->form_validation->set_rules("first_name", "氏", "required|trim");
+        $this->form_validation->set_rules("last_name", "名", "required|trim");
+        $this->form_validation->set_rules("age", "年齢", "required|trim");
+        $this->form_validation->set_rules("home", "出身地", "required|trim");
+        
+        if ($this->form_validation->run())
+        {
+            $this->Member_model->koushin($post,$id);
+        }
+        else
+        {
+            redirect('member/index');
+        }
+
         redirect('member/index');
     }
 

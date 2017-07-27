@@ -4,9 +4,9 @@
   </head>
   <body>
    <h1>ログイン画面</h1>
-   <form method="post" action="/problem07/login/login_submit">
+   <form method="post" action="/login/login_submit">
     <p>メールアドレス：<input type="text" name="email" /><p>
-    <p>パスワード：<input type="text" name="passward" /><p>
+    <p>パスワード：<input type="text" name="password" /><p>
     <input type ="submit" value="ログイン">
    </form>
   </body>
