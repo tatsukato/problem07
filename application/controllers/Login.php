@@ -15,7 +15,7 @@ class Login extends CI_Controller
     }
     
     public function login_submit()
-    {
+    {   
         $post = $_POST;
         
         $user = $this->User_model->getUserByEmail($post);

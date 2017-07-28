@@ -3,7 +3,8 @@
       <title>社員情報更新</title>
   </head>
   <body>
-      <h1>社員情報更新</h1>
+   <h1>社員情報更新</h1>
+   <?php echo form_open('member/update_submit/<?php echo $id ?>'); ?>
    <form method="post" action="/member/update_submit/<?php echo $id ?>">
     <p>氏：<input type="text" name="first_name" /><p>
     <p>名：<input type="text" name="last_name" /><p>
