@@ -72,6 +72,10 @@ class User extends CI_Controller
         //elseになってしまうので省いています。ので同じアドレスを入力するとデータベース
         //の設定で更新はできないのですがエラーになってしまいます。
         //他にいい方法はありますでしょうか？
+        
+        //メールアドレスに変更が合った場合のみ、emailのバリデーションルールにis_unique[users.email]
+        //を追加すればよくないですか？
+        
         $this->form_validation->set_rules("email", "メールアドレス", "required|trim");
         $this->form_validation->set_rules("password", "パスワード", "required|trim");
         
@@ -85,6 +89,8 @@ class User extends CI_Controller
             //とれてしまってエラーが表示されるので.redirect('user/index')に
             //リダイレクトさせてます。
             //このままでいいのかそれともidを保持させる方法はありますでしょうか？
+            
+            //もしidが必要ならつけましょう。
             redirect('user/index');
         }
         
