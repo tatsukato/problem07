@@ -25,6 +25,15 @@ class User extends CI_Controller
         $this->load->view('users/userlist', $this->var);
     }
     
+    public function getuser($id)
+    {   
+        $user = $this->User_model->getUserById($id);
+
+        $this->var['user'] = $user;
+
+        $this->load->view('users/update', $this->var);
+    }
+    
     public function signup()
     {
 	$this->load->view('users/signup');
