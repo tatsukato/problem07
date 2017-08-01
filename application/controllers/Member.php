@@ -36,7 +36,7 @@ class Member extends CI_Controller
         
         $this->form_validation->set_rules("first_name", "氏", "required|trim");
         $this->form_validation->set_rules("last_name", "名", "required|trim");
-        $this->form_validation->set_rules("age", "年齢", "required|trim");
+        $this->form_validation->set_rules("birthday", "生年月日", "required|trim");
         $this->form_validation->set_rules("home", "出身地", "required|trim");
         
         if ($this->form_validation->run())
@@ -53,7 +53,9 @@ class Member extends CI_Controller
 
     public function update($id)
     {
-        $this->var['id'] = $id;
+        $member = $this->Member_model->getById($id);
+        
+        $this->var['member'] = $member;
 
         $this->load->view('members/update',$this->var);
     }
@@ -64,7 +66,7 @@ class Member extends CI_Controller
         
         $this->form_validation->set_rules("first_name", "氏", "required|trim");
         $this->form_validation->set_rules("last_name", "名", "required|trim");
-        $this->form_validation->set_rules("age", "年齢", "required|trim");
+        $this->form_validation->set_rules("birthday", "生年月日", "required|trim");
         $this->form_validation->set_rules("home", "出身地", "required|trim");
         
         if ($this->form_validation->run())

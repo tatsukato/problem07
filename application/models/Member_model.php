@@ -27,8 +27,8 @@ class Member_model extends CI_Model
     public function touroku($post)
     {
         $sql = "INSERT INTO members (
-                 first_name,last_name,age,home)
-                VALUES ('$post[first_name]','$post[last_name]','$post[age]','$post[home]')";
+                 first_name,last_name,birthday,home)
+                VALUES ('$post[first_name]','$post[last_name]','$post[birthday]','$post[home]')";
 
         $this->db->query($sql);
     }
@@ -40,7 +40,7 @@ class Member_model extends CI_Model
         $sql = "UPDATE members SET 
                    first_name = '$post[first_name]',
                    last_name = '$post[last_name]',
-                   age = '$post[age]',
+                   birthday = '$post[birthday]',
                    home = '$post[home]',
                    modified = '$date'
 

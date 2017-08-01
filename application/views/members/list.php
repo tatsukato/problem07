@@ -10,8 +10,8 @@
         <tr>
           <th>ID</th>
           <th>氏名</th>
-          <th>年齢</th>
           <th>出身</th>
+          <th>コメント</th>
           <th>削除</th>
           <th>登録日時</th>
           <th>更新日時</th>
@@ -23,11 +23,11 @@
         <tr>
           <!--こんな風に展開します-->
           <td><?php echo $member['id'] ?></td>
-          <td><a href="/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?></a></td>
-          <td><?php echo $member['age'] ?></td>
+          <td><a href="/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?>（<?php echo floor ((date('Ymd') - $member['birthday'])/10000); ?>）</a></td>
           <td><?php echo $member['home'] ?></td>
+          <td><a href ="/comment/index/">一覧</a></td>
           <td><a href ="/member/delete/<?php echo $member['id'] ?>"onclick="return check()">削除</a></td>
-          <td><?php echo $member['created'] ?>2</td>
+          <td><?php echo $member['created'] ?></td>
           <td><?php echo $member['modified'] ?></td>
         </tr>
         <?php endforeach; ?>

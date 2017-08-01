@@ -90,10 +90,6 @@ class User extends CI_Controller
         }
         else
         {
-            //redirect('user/update');にリダイレクトさせるとURLの最後のidが
-            //とれてしまってエラーが表示されるので.redirect('user/index')に
-            //リダイレクトさせてます。
-            //このままでいいのかそれともidを保持させる方法はありますでしょうか？
             redirect('user/index');
         }
         
