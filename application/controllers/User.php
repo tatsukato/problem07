@@ -25,15 +25,6 @@ class User extends CI_Controller
         $this->load->view('users/userlist', $this->var);
     }
     
-    public function getuser($id)
-    {   
-        $user = $this->User_model->getUserById($id);
-
-        $this->var['user'] = $user;
-
-        $this->load->view('users/update', $this->var);
-    }
-    
     public function signup()
     {
 	$this->load->view('users/signup');
@@ -56,8 +47,6 @@ class User extends CI_Controller
             redirect('user/signup');
         }
         
-        
-             
         $user = $this->User_model->getUserByEmail($post);
 
         $this->User_model->new_passward($post,$user);
@@ -66,35 +55,40 @@ class User extends CI_Controller
     }
     
     public function update($id)
-    {
-        $this->var['id'] = $id;
-                
-        $this->load->view('users/update',$this->var);
+    {   
+        $user = $this->User_model->getUserById($id);
+
+        $this->var['user'] = $user;
+
+        $this->load->view('users/update', $this->var);
     }
     
     public function update_submit($id)
     {
         $post = $this->security->xss_clean($_POST);
         
-        $this->form_validation->set_rules("name", "名前", "required|trim");
+        $user = $this->User_model->getUserById($id);        
+
+        if ($post['email'] == $user['email'])
+        {
+            $this->form_validation->set_rules("email", "メールアドレス", "required|trim");
+        }
+        else
+        {
+            $this->form_validation->set_rules("email", "メールアドレス", "required|is_unique[users.email]|trim");
+        }
         
-        
-        //メールアドレスに変更が合った場合のみ、emailのバリデーションルールにis_unique[users.email]
-        //を追加すればよくないですか？
-        
-        $this->form_validation->set_rules("email", "メールアドレス", "required|trim");
+        $this->form_validation->set_rules("name", "名前", "required|trim");    
         $this->form_validation->set_rules("password", "パスワード", "required|trim");
         
         if ($this->form_validation->run())
         {
-            $user = $this->User_model->getUserById($id);
+            $this->User_model->koushin($post,$user,$id);
         }
         else
         {
-            redirect('user/index');
+            redirect("user/update/$id");
         }
-        
-        $this->User_model->koushin($post,$user,$id);
 
         redirect('user/index');
     }

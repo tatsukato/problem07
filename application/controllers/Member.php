@@ -20,7 +20,15 @@ class Member extends CI_Controller
     {   
         $members = $this->Member_model->getList();
 
-        $this->var['members'] = $members;
+        $members_with_age = [];
+        foreach($members as $member)
+        {
+            $member['age'] = floor((date('Ymd') - date('Ymd', strtotime($member['birthday']))) / 10000);
+
+            $members_with_age[] = $member;
+        }
+        
+        $this->var['members'] = $members_with_age;
 
         $this->load->view('members/list', $this->var);
     }
@@ -75,7 +83,7 @@ class Member extends CI_Controller
         }
         else
         {
-            redirect('member/index');
+            redirect("member/update/$id");
         }
 
         redirect('member/index');

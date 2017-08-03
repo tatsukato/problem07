@@ -23,9 +23,9 @@
         <tr>
           <!--こんな風に展開します-->
           <td><?php echo $member['id'] ?></td>
-          <td><a href="/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?>（<?php echo floor ((date('Ymd') - $member['birthday'])/10000); ?>）</a></td>
+          <td><a href="/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?>(<?php echo $member['age'] ?>)</a></td>
           <td><?php echo $member['home'] ?></td>
-          <td><a href ="/comment/index/">一覧</a></td>
+          <td><a href ="/comment/index/<?php echo $member['id'] ?>">一覧</a></td>
           <td><a href ="/member/delete/<?php echo $member['id'] ?>"onclick="return check()">削除</a></td>
           <td><?php echo $member['created'] ?></td>
           <td><?php echo $member['modified'] ?></td>
@@ -36,12 +36,12 @@
     <script type="text/javascript">
         function check(){
 
-	if(window.confirm('削除してよろしいですか？')){ // 確認ダイアログを表示
-		return true; // 「OK」時は送信を実行
+	if(window.confirm('削除してよろしいですか？')){ 
+		return true; 
 	}
-	else{ // 「キャンセル」時の処理
-		window.alert('キャンセルされました'); // 警告ダイアログを表示
-		return false; // 送信を中止
+	else{
+		window.alert('キャンセルされました'); 
+		return false; 
 	}
 
         }

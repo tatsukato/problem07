@@ -20,11 +20,12 @@ class Login extends CI_Controller
         
         $user = $this->User_model->getUserByEmail($post);
         
-        $hash = sha1($post[password].$user[created]);
+        $hash = sha1($post['password'].$user['created']);
 
         if($hash == $user['password'])
         {
             $this->session->set_userdata('is_login', TRUE);
+            $this->session->set_userdata('user_id', $user[id]);
         }
         else
         {

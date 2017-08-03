@@ -4,6 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Comment extends CI_Controller
 {
+    protected $var = [];
+    
     public function __construct()
     {
         parent::__construct();
@@ -14,32 +16,50 @@ class Comment extends CI_Controller
         }
     }
     
-    public function index()
+    public function index($id)
     {
-        $this->load->view('comments/commentlist');
+        $this->session->set_userdata('member_id', $id);
+        
+        $comments = $this->Comment_model->getCommentById($id);
+        
+        $commnts_with_name = [];
+        foreach($comments as $comment)
+        {            
+            $comment['user_name'] = $this->Comment_model->getNameById($comment);
+                   
+            $commnts_with_name[] = $comment;
+        }
+        
+        $this->var['comments'] = $commnts_with_name;
+        
+        $this->load->view('comments/commentlist', $this->var);
     }
     
     public function post()
-    {        
-        $this->load->view('comments/post', $this->var);
+    {   
+        $this->load->view('comments/post');
     }
     
      public function post_submit()
     {   
         $post = $this->security->xss_clean($_POST);
         
+        $member_id = $this->session->userdata('member_id');
+        
+        $user_id = $this->session->userdata('user_id'); 
+
         $this->form_validation->set_rules("title", "タイトル", "required|trim");
         $this->form_validation->set_rules("comment", "名コメント", "required|trim");
         
         if ($this->form_validation->run())
         {
-            $this->comment_model->touroku($post);
+            $this->Comment_model->toukou($post,$member_id,$user_id);
         }
         else
         {
             redirect('comment/post');
         }
         
-        redirect('comment/index');
+        redirect("comment/index/{$member_id}");
     }
 }

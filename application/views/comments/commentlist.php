@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>コメント一覧画面</h1>
-    <a href="/comment/post">新規登録</a>
+    <a href="/comment/post/">新規登録</a>
     <table border>
       <thead>
         <tr>
@@ -17,17 +17,17 @@
         </tr>
       </thead>
       <tbody>
+        <?php foreach ($comments as $comment) : ?>
         <tr>
-          <td>1</td>
-          <td>タイトル</td>
-          <td>aaa</td>
-          <td>コメントです。</td>
-          <td>2017-00-00</td>
-          <td>2017-00-00</td>
+          <td><?php echo $comment['id'] ?></td>
+          <td><?php echo $comment['title'] ?></td>
+          <td><?php echo $comment['user_name'] ?></td>
+          <td><?php echo $comment['comment'] ?></td>
+          <td><?php echo $comment['created'] ?></td>
+          <td><?php echo $comment['modified'] ?></td>
         </tr>
+        <?php endforeach; ?>
       </tbody>
     </table>
-   
-  </body>
- 
-</html>
+   </body>
+ </html>

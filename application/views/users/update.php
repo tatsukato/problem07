@@ -25,7 +25,7 @@
         </tr>
       </tbody>
     </table>
-    <?php echo form_open('user/update_submit/$id'); ?>
+    <?php echo form_open("user/update_submit/$user[id]"); ?>
     <p>名前：<input type="text" name="name" /><p>
     <p>メールアドレス：<input type="text" name="email" /><p>
     <p>パスワード：<input type="text" name="password" /><p>

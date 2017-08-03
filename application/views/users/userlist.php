@@ -20,7 +20,7 @@
         <?php foreach ($users as $user) : ?>
         <tr>
           <td><?php echo $user['id'] ?></td>
-          <td><a href="/user/getuser/<?php echo $user['id'] ?>"><?php echo $user['name'] ?></a></td>
+          <td><a href="/user/update/<?php echo $user['id'] ?>"><?php echo $user['name'] ?></a></td>
           <td><?php echo $user['email'] ?></td>
           <td><a href ="/user/delete/<?php echo $user['id'] ?>"onclick="return check()">削除</a></td>
           <td><?php echo $user['created'] ?></td>
