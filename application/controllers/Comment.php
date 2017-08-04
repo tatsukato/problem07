@@ -10,15 +10,20 @@ class Comment extends CI_Controller
     {
         parent::__construct();
         
-        if($this->session->userdata('is_login') !=true)
+        if(empty($this->session->userdata('user_id')))
         {
             redirect('login/index');            
         }
     }
-    
+
     public function index($id)
     {
         $this->session->set_userdata('member_id', $id);
+        
+        if (empty($this->session->userdata('member_id')))
+        {
+            redirect('member/index');
+        }
         
         $comments = $this->Comment_model->getCommentById($id);
         

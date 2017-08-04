@@ -24,12 +24,7 @@ class Login extends CI_Controller
 
         if($hash == $user['password'])
         {
-            $this->session->set_userdata('is_login', TRUE);
             $this->session->set_userdata('user_id', $user[id]);
-        }
-        else
-        {
-            $this->session->set_userdata('is_login', FALSE);
         }
          
         redirect('member/index');

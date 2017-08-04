@@ -10,7 +10,7 @@ class User extends CI_Controller
     {
         parent::__construct();
         
-        if($this->session->userdata('is_login') !=true)
+        if(empty($this->session->userdata('user_id')))
         {
             redirect('login/index');            
         }

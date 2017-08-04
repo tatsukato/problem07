@@ -26,10 +26,10 @@
       </tbody>
     </table>
     <?php echo form_open("user/update_submit/$user[id]"); ?>
-    <p>名前：<input type="text" name="name" /><p>
-    <p>メールアドレス：<input type="text" name="email" /><p>
-    <p>パスワード：<input type="text" name="password" /><p>
-    <input type ="submit" value="変更">
+    <p>名前：<input type = "text" name = "name" /><p>
+    <p>メールアドレス：<input type = "text" name = "email" /><p>
+    <p>パスワード：<input type = "text" name = "password" /><p>
+    <input type = "submit" value = "変更">
     </form>
   </body>
 </html>
