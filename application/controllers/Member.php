@@ -50,17 +50,23 @@ class Member extends CI_Controller
         if ($this->form_validation->run())
         {
             $this->Member_model->touroku($post);
+            redirect('member/index');
         }
         else
         {
-            redirect('member/add');
+            $this->load->view('members/add');
         }
-        
-        redirect('member/index');
     }
 
     public function update($id)
     {
+        $member = $this->Member_model->getById($id);
+
+        if (empty($member))
+        {
+            redirect('login/index');
+        }
+        
         $member = $this->Member_model->getById($id);
         
         $this->var['member'] = $member;
@@ -69,7 +75,13 @@ class Member extends CI_Controller
     }
 
     public function update_submit($id)
-    {   
+    {
+        $id_check = is_numeric($id);
+        if ($id_check == false)
+        {
+            redirect('login/index');
+        }
+        
         $post = $this->security->xss_clean($_POST);
         
         $this->form_validation->set_rules("first_name", "氏", "required|trim");
@@ -80,13 +92,17 @@ class Member extends CI_Controller
         if ($this->form_validation->run())
         {
             $this->Member_model->koushin($post,$id);
+            
+            redirect('member/index');
         }
         else
         {
-            redirect("member/update/$id");
-        }
+            $member = $this->Member_model->getById($id);
+        
+            $this->var['member'] = $member;
 
-        redirect('member/index');
+            $this->load->view('members/update',$this->var);
+        }
     }
 
     public function delete($id)

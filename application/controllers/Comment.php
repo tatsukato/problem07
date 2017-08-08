@@ -59,12 +59,12 @@ class Comment extends CI_Controller
         if ($this->form_validation->run())
         {
             $this->Comment_model->toukou($post,$member_id,$user_id);
+            
+            redirect("comment/index/{$member_id}");
         }
         else
         {
-            redirect('comment/post');
+            $this->load->view('comments/post');
         }
-        
-        redirect("comment/index/{$member_id}");
     }
 }

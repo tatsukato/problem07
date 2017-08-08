@@ -4,6 +4,7 @@
   </head>
   <body>
    <h1>コメント投稿</h1>
+   <?php echo validation_errors(); ?>
    <?php echo form_open("comment/post_submit/"); ?>
     <p>タイトル：<input type = "text" name = "title" /><p>
     <p>コメント：<input type = "text" name = "comment"/><p>

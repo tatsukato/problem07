@@ -3,7 +3,6 @@
       <title>ユーザーデータ変更</title>
   </head>
   <body>
-    <?php echo validation_errors(); ?>
     <h1>ユーザーデータ変更</h1>
     <table border>
       <thead>
@@ -25,11 +24,14 @@
         </tr>
       </tbody>
     </table>
+    <?php echo validation_errors(); ?>
     <?php echo form_open("user/update_submit/$user[id]"); ?>
     <p>名前：<input type = "text" name = "name" /><p>
     <p>メールアドレス：<input type = "text" name = "email" /><p>
     <p>パスワード：<input type = "text" name = "password" /><p>
+    <p>パスワード確認：<input type = "text" name = "password_check" /><p>
     <input type = "submit" value = "変更">
+    <p><a href="/user/index">戻る</a></p>
     </form>
   </body>
 </html>

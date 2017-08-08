@@ -15,19 +15,35 @@ class Login extends CI_Controller
     }
     
     public function login_submit()
-    {   
-        $post = $_POST;
+    {           
+        $post = $this->security->xss_clean($_POST);
         
-        $user = $this->User_model->getUserByEmail($post);
+        $this->form_validation->set_rules("email", "メールアドレス", "required|trim");
+        $this->form_validation->set_rules("password", "パスワード", "required|trim");
         
-        $hash = sha1($post['password'].$user['created']);
-
-        if($hash == $user['password'])
+        if ($this->form_validation->run())
         {
-            $this->session->set_userdata('user_id', $user[id]);
+            $user = $this->User_model->getUserByEmail($post);
+        
+            $hash = sha1($post['password'].$user['created']);
+
+            if($hash == $user['password'])
+            {
+                $this->session->set_userdata('user_id', $user[id]);
+                
+                redirect('member/index');
+            }
+            
+            else
+            {
+                $this->session->set_flashdata('login_error', true);
+                $this->load->view('logins/login');
+            }
         }
-         
-        redirect('member/index');
+        else
+        {
+            $this->load->view('logins/login');
+        }
     }
     
     public function logout()

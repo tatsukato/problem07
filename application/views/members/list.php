@@ -18,12 +18,10 @@
         </tr>
       </thead>
       <tbody>
-        <?php // foreach ($prefs as $key => $val) : ?>
         <?php foreach ($members as $member) : ?>
         <tr>
-          <!--こんな風に展開します-->
           <td><?php echo $member['id'] ?></td>
-          <td><a href="/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?>(<?php echo $member['age'] ?>)</a></td>
+          <td><a href="/member/update/<?php echo $member['id'] ?>"><?php echo $member['first_name'] ?><?php echo $member['last_name'] ?>(<?php echo $member['age'] ?>)</a></td>
           <td><?php echo $member['home'] ?></td>
           <td><a href ="/comment/index/<?php echo $member['id'] ?>">一覧</a></td>
           <td><a href ="/member/delete/<?php echo $member['id'] ?>"onclick="return check()">削除</a></td>

@@ -9,7 +9,9 @@
     <p>名前：<input type = "text" name = "name" /><p>
     <p>メールアドレス：<input type = "text" name = "email" /><p>
     <p>パスワード：<input type = "text" name = "password" /><p>
+    <p>パスワード確認：<input type = "text" name = "password_check" /><p>
     <input type = "submit" value = "登録">
+    <p><a href="/user/index">戻る</a></p>
    </form>
   </body>
 </html>

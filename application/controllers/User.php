@@ -35,28 +35,34 @@ class User extends CI_Controller
         $post = $this->security->xss_clean($_POST);
         
         $this->form_validation->set_rules("name", "名前", "required|trim");
-        $this->form_validation->set_rules("email", "メールアドレス", "required|trim|is_unique[users.email]");
-        $this->form_validation->set_rules("password", "パスワード", "required|trim");
+        $this->form_validation->set_rules("email", "メールアドレス", "required|trim|is_unique[users.email]|valid_email");
+        $this->form_validation->set_rules("password", "パスワード", "required|trim|min_length[8]|max_length[16]");
+        $this->form_validation->set_rules("password_check", "パスワード確認", "required|trim|matches[password]");
         
         if ($this->form_validation->run())
         {
             $this->User_model->new_user($post);
+            
+            $user = $this->User_model->getUserByEmail($post);
+            
+            $this->User_model->new_passward($post,$user);
+             
+            redirect('user/index');
         }
         else
         {
-            redirect('user/signup');
+            $this->load->view('users/signup');
         }
-        
-        $user = $this->User_model->getUserByEmail($post);
-
-        $this->User_model->new_passward($post,$user);
-
-        redirect('user/index');
     }
     
     public function update($id)
-    {   
+    {           
         $user = $this->User_model->getUserById($id);
+        
+        if (empty($user))
+        {
+            redirect('login/index');
+        }
 
         $this->var['user'] = $user;
 
@@ -65,32 +71,43 @@ class User extends CI_Controller
     
     public function update_submit($id)
     {
+        $id_check = is_numeric($id);
+        if ($id_check == false)
+        {
+            redirect('login/index');
+        }
+        
         $post = $this->security->xss_clean($_POST);
         
         $user = $this->User_model->getUserById($id);        
 
         if ($post['email'] == $user['email'])
         {
-            $this->form_validation->set_rules("email", "メールアドレス", "required|trim");
+            $this->form_validation->set_rules("email", "メールアドレス", "required|trim|valid_email");
         }
         else
         {
-            $this->form_validation->set_rules("email", "メールアドレス", "required|is_unique[users.email]|trim");
+            $this->form_validation->set_rules("email", "メールアドレス", "required|trim|is_unique[users.email]|valid_email");
         }
         
         $this->form_validation->set_rules("name", "名前", "required|trim");    
-        $this->form_validation->set_rules("password", "パスワード", "required|trim");
+        $this->form_validation->set_rules("password", "パスワード", "required|trim|min_length[8]|max_length[16]", preg_match());
+        $this->form_validation->set_rules("password_check", "パスワード確認", "required|trim|matches[password]");
         
         if ($this->form_validation->run())
         {
             $this->User_model->koushin($post,$user,$id);
+            
+            redirect('user/index');
         }
         else
         {
-            redirect("user/update/$id");
-        }
+            $user = $this->User_model->getUserById($id);
 
-        redirect('user/index');
+            $this->var['user'] = $user;
+
+            $this->load->view('users/update', $this->var);
+        }
     }
     
      public function delete($id)
