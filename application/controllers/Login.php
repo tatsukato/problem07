@@ -37,7 +37,7 @@ class Login extends CI_Controller
             else
             {
                 $this->session->set_flashdata('login_error', true);
-                $this->load->view('logins/login');
+                redirect('login/index');
             }
         }
         else
