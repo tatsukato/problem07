@@ -36,7 +36,7 @@ class User extends CI_Controller
         
         $this->form_validation->set_rules("name", "名前", "required|trim");
         $this->form_validation->set_rules("email", "メールアドレス", "required|trim|is_unique[users.email]|valid_email");
-        $this->form_validation->set_rules("password", "パスワード", "required|trim|min_length[8]|max_length[16]");
+        $this->form_validation->set_rules("password", "パスワード", "required|trim|min_length[8]|max_length[16]|regex_match[/\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,100}+\z/]");
         $this->form_validation->set_rules("password_check", "パスワード確認", "required|trim|matches[password]");
         
         if ($this->form_validation->run())
