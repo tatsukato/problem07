@@ -34,5 +34,12 @@ class Comment_model extends CI_Model
 
         $this->db->query($sql);
     }
+    
+    public function sakujo($id)
+    {
+        $sql = "DELETE FROM comments WHERE member_id ='$id'";
+        
+        $this->db->query($sql);
+    }
 }
 

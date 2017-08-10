@@ -108,6 +108,8 @@ class Member extends CI_Controller
     public function delete($id)
     {
         $this->Member_model->sakujo($id);
+        
+        $this->Comment_model->sakujo($id);
 
         redirect('member/index');
     }
