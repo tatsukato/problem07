@@ -44,7 +44,7 @@ class Member extends CI_Controller
         
         $this->form_validation->set_rules("first_name", "氏", "required|trim");
         $this->form_validation->set_rules("last_name", "名", "required|trim");
-        $this->form_validation->set_rules("birthday", "生年月日", "required|trim|regex_match[^\d{4}\-\d{2}\-\d{2}$]");
+        $this->form_validation->set_rules("birthday", "生年月日", "required|trim|regex_match[/^\d{4}\-\d{2}\-\d{2}$/]");
         $this->form_validation->set_rules("home", "出身地", "required|trim");
         
         if ($this->form_validation->run())
@@ -86,7 +86,7 @@ class Member extends CI_Controller
         
         $this->form_validation->set_rules("first_name", "氏", "required|trim");
         $this->form_validation->set_rules("last_name", "名", "required|trim");
-        $this->form_validation->set_rules("birthday", "生年月日", "required|trim|regex_match[^\d{4}\-\d{2}\-\d{2}$]]");
+        $this->form_validation->set_rules("birthday", "生年月日", "required|trim|regex_match[/^\d{4}\-\d{2}\-\d{2}$/]");
         $this->form_validation->set_rules("home", "出身地", "required|trim");
         
         if ($this->form_validation->run())

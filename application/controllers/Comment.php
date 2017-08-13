@@ -18,6 +18,13 @@ class Comment extends CI_Controller
 
     public function index($id)
     {
+        $member = $this->Member_model->getById($id);
+
+        if (empty($member))
+        {
+            redirect('login/index');
+        }
+        
         $this->session->set_userdata('member_id', $id);
         
         if (empty($this->session->userdata('member_id')))

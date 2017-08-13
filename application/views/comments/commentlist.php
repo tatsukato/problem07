@@ -29,6 +29,9 @@
         <?php endforeach; ?>
       </tbody>
     </table>
+    <?php if(empty($comments)): ?>
+    <p>現在コメントはありません。</p>
+   <?php endif; ?>
     <a href="/comment/index/">戻る</a>
    </body>
  </html>
