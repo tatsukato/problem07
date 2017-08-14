@@ -29,6 +29,6 @@
         <?php endforeach; ?>
       </tbody>
     </table>
-    <a href="/comment/index/">戻る</a>
+    <a href="/member/index/">戻る</a>
    </body>
  </html>
