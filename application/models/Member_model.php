@@ -12,7 +12,7 @@ class Member_model extends CI_Model
 
     public function getList()
     {
-        $sql = "SELECT * FROM members ORDER BY created DESC";
+        $sql = "SELECT * FROM members WHERE deleted IS NULL ORDER BY created DESC";
 
         return $this->db->query($sql)->result_array();
     }
@@ -51,8 +51,15 @@ class Member_model extends CI_Model
 
     public function sakujo($id)
     {
-        $sql = "DELETE FROM members WHERE id ='$id'";
+        $date = date('Y-m-d H:i:s');
+        
+        $sql = "UPDATE members SET 
+                   
+                   deleted = '$date'
 
+                   WHERE id ='$id'";
+
+        $this->db->query($sql);
         $this->db->query($sql);
     }
 }
