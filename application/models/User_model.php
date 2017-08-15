@@ -33,14 +33,14 @@ class User_model extends CI_Model
     
     public function getUserList()
     {
-        $sql = "SELECT * FROM users ORDER BY created DESC";
+        $sql = "SELECT * FROM users WHERE deleted IS NULL ORDER BY created DESC";
 
         return $this->db->query($sql)->result_array();
     }
     
     public function getUserByEmail($post)
     {
-        $sql = "SELECT * FROM users WHERE email = ?";
+        $sql = "SELECT * FROM users WHERE deleted IS NULL AND email = ?";
                
         $user = $this->db->query($sql, array($post['email']))->row_array();
          
@@ -74,7 +74,13 @@ class User_model extends CI_Model
     
     public function sakujo($id)
     {
-        $sql = "DELETE FROM users WHERE id ='$id'";
+        $date = date('Y-m-d H:i:s');
+        
+        $sql = "UPDATE users SET 
+                   
+                   deleted = '$date'
+
+                   WHERE id ='$id'";
 
         $this->db->query($sql);
     }
